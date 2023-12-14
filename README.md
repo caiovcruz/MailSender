@@ -36,16 +36,13 @@ services.AddSingleton<ISmtpConfigurations>(config.GetSection("SmtpMail").Get<Smt
 ```
 8.	Feita toda configuração a biblioteca está pronta para ser utilizada. O método de exemplo abaixo mostra uma forma de utilizá-la.
 ```dotnet
-public async Task SendMailAsync(IList<Attachment> attachments = null)
+public async Task SendMailAsync(string subject, string body, IList<Attachment> attachments = null)
 {
 	var email = new MailConfigurations();
 
-	email.Subject = $"Teste envio de e-mail {GetType().Name}";
+	email.Subject = subject;
 
-	email.Body = $@"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
-					dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non 
-					proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+	email.Body = body;
 
 	email.IsHtml = false;
 
