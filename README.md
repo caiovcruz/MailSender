@@ -57,15 +57,24 @@ public async Task SendMailAsync(string subject, string body, IList<Attachment> a
 
 	await _mailSender.SendAsync(email, attachments);
 }
+```
 
-E onde chamar o método, caso deseje poderá criar anexos(attachments) como abaixo, ou somente chamar a última linha:
+E onde chamar o método, caso deseje poderá criar anexos(attachments) como abaixo, ou somente chamar a última linha informando subject e body:
+
+```dotnet
+var subject = $"Teste envio de e-mail";
+
+var body = $@"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+	      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+	      dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non 
+	      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 
 var attachments = new List<Attachment>
 {
 	new Attachment(nomeArquivoLocal)
 };
 
-await SendMailAsync(attachments);
+await SendMailAsync(subject, body, attachments);
 ```
 
 </div>
